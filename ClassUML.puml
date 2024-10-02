@@ -28,7 +28,7 @@ class Grid {
 -int openCells
 
 +Grid()
-+Cell getCell(int row, int col)
++Cell getCell(int[] coordinate)
 }
 
 class GridGenerator {
