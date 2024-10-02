@@ -19,24 +19,30 @@ public class GridGenerator {
 
     public Grid generate(){
         Grid grid = new Grid(size);
-        /*
+
         int mineCounter = 0;
+        int[] coordinate = new int[2];
         placeMines(grid);
         Cell[][] cells = grid.getCells();
-        for(int i = 0; i < cells[0].length; i++){
-            for(int j = 0; j <){
-                mineCounter = countMines(cell, grid);
-                if(mineCounter > 0 ){
-                    cell = new NumberCell()
+        for(int i = 0; i < cells.length; i++){
+            for(int j = 0; j < cells[0].length; j++){
+                if(cells[i][j] == null) {
+                    mineCounter = countMines(cells[i][j], grid);
+                    coordinate[0] = i;
+                    coordinate[1] = j;
+                    if (mineCounter > 0) {
+                        cells[i][j] = new NumberCell(coordinate, mineCounter);
+                    }else{
+                        cells[i][j] = new EmptyCell(coordinate);
+                    }
                 }
             }
         }
 
-*/
+
 
         return grid;
     }
-
 
 
     private int[][] generateMines(){
