@@ -17,9 +17,11 @@ public class Game {
             int[] coordinates = user.getInput(grid.getSize());
 
             Cell selectedCell = grid.getCell(coordinates);
-            if (!selectedCell.openCell()) {
+            if(!grid.openCell(selectedCell)){
                 status = GameStatus.LOSE;
-                System.out.println("You hit a mine! Game Over.");
+                System.out.println("You hit a mine! Game Over.\n");
+                grid.setAllCellOpened();
+                printGrid();
                 break;
             }
 
