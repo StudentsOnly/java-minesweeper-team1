@@ -1,12 +1,10 @@
-public class NumberCell extends Cell{
+public class EmptyCell extends Cell{
 
-    public NumberCell(int[] coordinate, int value){
-
+    public EmptyCell(int[] coordinate){
         super();
         this.coordinate = coordinate;
         this.isOpen = false;
-        this.value = "[" + value +"]";
-
+        this.value = "[ ]";
     }
 
     @Override
@@ -14,4 +12,5 @@ public class NumberCell extends Cell{
         this.setAsOpen();
         return true;
     }
+
 }

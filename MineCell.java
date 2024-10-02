@@ -11,7 +11,7 @@ public class MineCell extends Cell{
 
     @Override
     boolean openCell() {
-        this.isOpen = true;
+        this.setAsOpen();
         return false;
     }
 }

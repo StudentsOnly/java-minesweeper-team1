@@ -24,5 +24,9 @@ abstract class Cell {
         return "[_]";
     }
 
+    public void setAsOpen(){
+       this.isOpen = true;
+    }
+
     abstract boolean openCell();
 }
