@@ -5,6 +5,7 @@ public class GridGenerator {
     private int size;
     private int mines;
     private int[][] minesCoordinates;
+    private int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
 
     public GridGenerator(int size, int mines){
         this.size = size;
@@ -12,14 +13,27 @@ public class GridGenerator {
         this.minesCoordinates = new int[mines][2];
     }
 
+    public int getMines(){
+        return mines;
+    }
+/*
     public Grid generate(){
         Grid grid = new Grid(size);
         placeMines(grid);
+        for(Cell[] row : grid.getCells()){
+            for(Cell cell: row){
+                if(countMines(cell, grid) > 0 ){
+                    cell = new NumberCell()
+                }
+            }
+        }
 
 
 
         return grid;
     }
+    
+ */
 
     private int[][] generateMines(){
         int[][] coordinates = new int[mines][2];
@@ -42,14 +56,33 @@ public class GridGenerator {
     private void placeMines(Grid grid){
         int[][] coordinates = generateMines();
         for(int[] row : coordinates){
-            grid.getCells()[row[0]][row[1]] = new MineCell();
+            grid.getCells()[row[0]][row[1]] = new MineCell(row); // gives coordinates?!
         }
     }
 
-    private void goAround(Cell cell){
-        int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
+    private int countMines(Cell cell, Grid grid){
+        int[] deltaCoordinate = new int[2];
+        int minesAround = 0;
+        // int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
+        int[] currentCoordinate = cell.getCoordinate();
+        for(int[] coordinate: deltas){
+            deltaCoordinate[0] = currentCoordinate[0] + coordinate[0];
+            deltaCoordinate[1] = currentCoordinate[1] + coordinate[1];
+            if(isValid(deltaCoordinate) && grid.getCell(deltaCoordinate) != null){
+                if(grid.getCell(deltaCoordinate).getClass().equals(MineCell.class)){
+                    minesAround++;
+                }
+            }
+        }
+        return minesAround;
 
     }
 
+    private boolean isValid(int[] coordinate){
+        if(coordinate[0] < 0 || coordinate[0] >= size || coordinate[1] < 0 || coordinate[1] >= size){
+            return false;
+        }
+        return true;
+    }
 
 }
