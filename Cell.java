@@ -1,10 +1,20 @@
 abstract class Cell {
     boolean isOpen;
     String value;
+    int[] coordinate;
 
-   private Cell(){
+   public Cell(int[] coordinate){
         this.isOpen = false;
         this.value = "[ ]";
+        this.coordinate = coordinate;
+    }
+    public Cell(){
+        this.isOpen = false;
+        this.value = "[ ]";
+    }
+
+    public int[] getCoordinate(){
+       return this.coordinate;
     }
 
     String printCell(){
