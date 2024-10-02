@@ -1,3 +1,7 @@
+## Team1 : Olga, Olena
+
+
+
 ## Game Exercise: Minesweeper
 
 ### Objective:
