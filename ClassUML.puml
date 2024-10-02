@@ -1,0 +1,86 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class GameApp {
++{static} void main()
+}
+
+class InputManager {
+-Scanner scan
+
++int[] getInput() //"return valid coordinates"
+}
+
+class Game {
+-Grid grid
+-GameStatus status
+-int counter
+-InputManager user
+
++void Game(Grid grid, InputManager input)
++void start()
++void printGrid()
+
+}
+class Grid {
+-Cell[][] cells
+-int size
+-int openCells
+
++Grid()
++Cell getCell(int row, int col)
+}
+
+class GridGenerator {
+-int size
+-int mines
+-int[][] mineCoordinates
+
++GridGenerator(int size, int mines)
++Grid generateGrid()
+
+}
+
+abstract class Cell {
+-boolean isOpen
+-String value
+
++String printCell()
++{abstract} boolean openCell()
+}
+
+class MineCell {
++boolean openCell()
+}
+
+class NumberCell {
++boolean openCell()
+}
+
+class EmptyCell {
++boolean openCell()
+
+}
+
+enum GameStatus {
+PLAY
+LOSE
+WIN
+}
+
+
+Cell <|-- MineCell
+Cell <|-- NumberCell
+Cell <|-- EmptyCell
+Game *-- GameStatus : contains
+Game *-- Grid : contains
+Game *-- InputManager : contains
+Grid *-- Cell : contains
+GameApp ..> GridGenerator : uses
+GameApp ..> InputManager : uses
+GameApp ..> Game : uses
+
+
+
+
+@enduml
