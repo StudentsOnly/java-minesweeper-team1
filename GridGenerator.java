@@ -16,24 +16,28 @@ public class GridGenerator {
     public int getMines(){
         return mines;
     }
-/*
+
     public Grid generate(){
         Grid grid = new Grid(size);
+        /*
+        int mineCounter = 0;
         placeMines(grid);
-        for(Cell[] row : grid.getCells()){
-            for(Cell cell: row){
-                if(countMines(cell, grid) > 0 ){
+        Cell[][] cells = grid.getCells();
+        for(int i = 0; i < cells[0].length; i++){
+            for(int j = 0; j <){
+                mineCounter = countMines(cell, grid);
+                if(mineCounter > 0 ){
                     cell = new NumberCell()
                 }
             }
         }
 
-
+*/
 
         return grid;
     }
-    
- */
+
+
 
     private int[][] generateMines(){
         int[][] coordinates = new int[mines][2];
