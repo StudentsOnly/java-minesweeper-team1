@@ -1,9 +1,10 @@
 public class NumberCell extends Cell{
 
-    public NumberCell(int[] coordinate, int value){
+    public NumberCell(int i, int j, int value){
 
-        super();
-        this.coordinate = coordinate;
+        this.coordinate = new int[2];
+        this.coordinate[0] = i;
+        this.coordinate[1] = j;
         this.isOpen = false;
         this.value = "[" + value +"]";
 

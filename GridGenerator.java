@@ -5,7 +5,7 @@ public class GridGenerator {
     private int size;
     private int mines;
     private int[][] minesCoordinates;
-    private int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
+    private int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 
     public GridGenerator(int size, int mines){
         this.size = size;
@@ -18,7 +18,7 @@ public class GridGenerator {
     }
 
     public Grid generate(){
-        Grid grid = new Grid(size);
+        Grid grid = new Grid(size, mines);
 
         int mineCounter = 0;
         int[] coordinate = new int[2];
@@ -27,13 +27,14 @@ public class GridGenerator {
         for(int i = 0; i < cells.length; i++){
             for(int j = 0; j < cells[0].length; j++){
                 if(cells[i][j] == null) {
-                    mineCounter = countMines(cells[i][j], grid);
                     coordinate[0] = i;
                     coordinate[1] = j;
+                    mineCounter = countMines(coordinate, grid);
+
                     if (mineCounter > 0) {
-                        cells[i][j] = new NumberCell(coordinate, mineCounter);
+                        cells[i][j] = new NumberCell(i, j, mineCounter);
                     }else{
-                        cells[i][j] = new EmptyCell(coordinate);
+                        cells[i][j] = new EmptyCell(i, j);
                     }
                 }
             }
@@ -66,15 +67,15 @@ public class GridGenerator {
     private void placeMines(Grid grid){
         int[][] coordinates = generateMines();
         for(int[] row : coordinates){
-            grid.getCells()[row[0]][row[1]] = new MineCell(row); // gives coordinates?!
+            grid.getCells()[row[0]][row[1]] = new MineCell(row); // gives coordinates
         }
     }
 
-    private int countMines(Cell cell, Grid grid){
+    private int countMines(int[] currentCoordinate, Grid grid){
         int[] deltaCoordinate = new int[2];
         int minesAround = 0;
-        // int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
-        int[] currentCoordinate = cell.getCoordinate();
+        // int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
+       // int[] currentCoordinate = cell.getCoordinate();
         for(int[] coordinate: deltas){
             deltaCoordinate[0] = currentCoordinate[0] + coordinate[0];
             deltaCoordinate[1] = currentCoordinate[1] + coordinate[1];

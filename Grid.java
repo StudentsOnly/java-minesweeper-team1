@@ -2,15 +2,19 @@ public class Grid {
     private int size;
     private int openCells;
     private Cell[][] cells;
+    private int mines;
 
-    public Grid(int size){
+    public Grid(int size, int mines){
         this.size = size;
         this.openCells = 0;
         this.cells = new Cell[size][size];
+        this.mines = mines;
     }
 
     public Cell getCell(int[] coordinate){
-        return cells[coordinate[0]][coordinate[1]];
+        int i = coordinate[0];
+        int j = coordinate[1];
+        return cells[i][j];
     }
 
     public Cell[][] getCells(){
@@ -22,7 +26,8 @@ public class Grid {
     }
 
     public boolean allCellOpened(){
-      if(openCells == size * size){
+
+      if(openCells == size * size - mines){
           return true;
       }
         return false;
@@ -44,7 +49,8 @@ public class Grid {
     }
 
     private void openCellsAround(Cell cell){
-        int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, 1}, {1, 0}, {1, 1}};
+        //something wrong
+        int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         int[] deltaCoordinate = new int[2];
         int[] currentCoordinate = cell.getCoordinate();
         for(int[] coordinate: deltas){

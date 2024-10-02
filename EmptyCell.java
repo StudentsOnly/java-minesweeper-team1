@@ -1,8 +1,9 @@
 public class EmptyCell extends Cell{
 
-    public EmptyCell(int[] coordinate){
-        super();
-        this.coordinate = coordinate;
+    public EmptyCell(int i, int j){
+        this.coordinate = new int[2];
+        this.coordinate[0] = i;
+        this.coordinate[1] = j;
         this.isOpen = false;
         this.value = "[ ]";
     }
