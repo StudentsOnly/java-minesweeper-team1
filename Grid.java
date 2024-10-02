@@ -20,4 +20,11 @@ public class Grid {
     public int getSize(){
         return size;
     }
+
+    public boolean allCellOpened(){
+        //logic
+
+
+        return false;
+    }
 }
