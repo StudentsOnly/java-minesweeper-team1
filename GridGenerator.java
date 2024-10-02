@@ -74,8 +74,6 @@ public class GridGenerator {
     private int countMines(int[] currentCoordinate, Grid grid){
         int[] deltaCoordinate = new int[2];
         int minesAround = 0;
-        // int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
-       // int[] currentCoordinate = cell.getCoordinate();
         for(int[] coordinate: deltas){
             deltaCoordinate[0] = currentCoordinate[0] + coordinate[0];
             deltaCoordinate[1] = currentCoordinate[1] + coordinate[1];
