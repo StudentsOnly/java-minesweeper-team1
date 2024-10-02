@@ -14,7 +14,7 @@ public class Game {
     public void start() {
         while (status == GameStatus.PLAY) {
             printGrid();
-            int[] coordinates = user.getInput();
+            int[] coordinates = user.getInput(grid.getSize());
 
             Cell selectedCell = grid.getCell(coordinates);
             if (!selectedCell.openCell()) {

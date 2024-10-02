@@ -1,12 +1,21 @@
+import java.util.Scanner;
+
 public class GameApp {
     public static void main(String[] args) {
+        try (Scanner scan = new Scanner(System.in)) {
 
-        InputManager input = new InputManager();
-        GridGenerator generator = new GridGenerator(10, 10);
-        Grid grid = generator.generate();
+            System.out.println("Welcome to the Minesweeper Game!");
 
-        // Start the game
-        Game game = new Game(grid, input);
-        game.start();
+            InputManager inputManager = new InputManager(scan);
+
+            int gridSize = inputManager.getGridSize();
+            int numMines = inputManager.getNumberOfMines(gridSize);
+
+            GridGenerator gridGenerator = new GridGenerator(gridSize, numMines);
+            Grid grid = gridGenerator.generate();
+            Game game = new Game(grid, inputManager);
+
+            game.start();
+        }
     }
 }
