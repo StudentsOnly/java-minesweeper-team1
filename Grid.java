@@ -49,7 +49,7 @@ public class Grid {
     }
 
     private void openCellsAround(Cell cell){
-        //something wrong
+        
         int[][] deltas = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
         int[] deltaCoordinate = new int[2];
         int[] currentCoordinate = cell.getCoordinate();
